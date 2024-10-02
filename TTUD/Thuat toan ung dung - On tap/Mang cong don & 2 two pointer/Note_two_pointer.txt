@@ -1,0 +1,20 @@
+Bài toán 1: merge 
+Cho hai dãy A, B đã được sắp xếp theo thứ tự không giảm
+trộn hai dãy để thu được dãy mới cũng được sắp xếp
+=> giống merge sort
+
+Bài toán 2:  Cho dãy số a[1], a[2], . . ., a[n] được sắp xếp theo thứ tự tăng dần (các phần
+ tử đôi một khác nhau). Cho trước giá trị Q, hãy đếm số cặp 2 chỉ số i và j sao cho a[i] + a[j] = Q.
+
+Bài toán 3: Cho dãy số không âm a[1], a[2], . . ., a[n]. Cho trước giá trị Q, hãy tìm dãy
+ con (gồm một số phần tử đứng liên tiếp cạnh nhau) dài nhất mà có tổng nhỏ hơn hoặc bằng Q.
+
+giải quyết:
+cho hai con trỏ left và right chạy từ cùng 1 phía
+	cho right chạy từ 1 -> n 
+	cộng thêm a[right] vào dãy con.
+	Nếu tổng dãy con lớn hơn Q thì di chuyển left cho đến khi tổng dãy con nhỏ hơn hoặc bằng Q
+	cập nhật max
+
+	
+

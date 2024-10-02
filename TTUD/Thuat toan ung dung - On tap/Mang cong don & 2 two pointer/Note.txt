@@ -1,0 +1,34 @@
+Mảng hiệu: D[]
+D[0] = A[0]
+D[i] = A[i] - A[i-1]
+tính mảng cộng dồn của mảng hiệu thu được kết quả là mảng ban đầu
+
+gọi S là mảng cộng dồn
+    D là mảng hiệu 
+ta có thể khôi phục A theo 2 cách
+S(A0,D(A)) = A
+D(S(0, A) = A
+
+
+Bài ứng dụng: Cho mảng A có n phần tử và Q thao tác. Mỗi thao tác tăng các phần từ từ l -> r lên k đơn vị.
+In ra A sau Q thao tác
+	* Thay vì dùng vòng for để tăng các phần tử của A từ l -> R lên k đơn vị có thể dung
+		D[l] += k; D[r] -= k;
+		//D[l] += k -> tăng tất cả các phần tử A lên k đơn vị kể từ vị trí l
+		//D[r] -= k -> giảm tất cả các phần tử của A đi k đơn vị kể từ vị trí r
+		// ==> chỉ tăng các phần từ từ l -> r lên k đơn vị.
+khôi phục mảng A bằng cách tính mảng cộng dồn trên mảng hiệu đã được cập nhật
+-> thu được kết quả
+
+
+//kĩ thuật loang trên mảng hai chiều
+cho một mảng gồm 0 và 1
+	vd 0 0 1 1 0 1
+	   1 1 0 1 0 1
+	   1 0 0 0 1 1
+           0 0 1 1 1 0
+đếm số đảo tạo bởi các chữ số 1
+các số 1 có chung cạnh -> cùng 1 đảo => vd trên có 3 đảo
+=> cách làm duyệt tưng phần tử của mảng và đánh dấu đã thăm nếu gặp 1 tăng số lượng lên và đệ quy để duyệt các phần tử 1 có cùng cạnh để đánh dấu các số 1 đó thuộc đảo đã thăm.
+
+ 

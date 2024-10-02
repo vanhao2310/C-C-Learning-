@@ -1,0 +1,31 @@
+Hướng đối tượng với C++
+
+//Kế thừa
+
+	kế thừa bằng 3 từ khóa:
+		: public
+		: protected
+		: private
+	vd class <ClassCon> : public <classCha>
+
+	Phương thức khởi tạo: 
+		lớp cha: 
+		Person(string name, int dob) {
+			this->name = name;
+			this->dob = dob;
+		}
+		
+		lớp con:
+		class Student : public Person {
+
+		Student(string name, int dob, double gpa) :Person(name, dob) {
+			this->gpa = gpa;
+		}
+		
+		}
+	
+- Nếu lớp con ghi đè phương thức của lớp cha nhưng muốn gọi lại phương thức của lớp cha thi sử dụng
+	<Lớp cha>::<Phương thức>
+	
+	vd SuperClass::getInfor();
+- thêm #pragma once vào file cpp chứa lớp được nhiều lớp kế thừa để tránh bị lặp mỗi khi include 

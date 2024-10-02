@@ -1,0 +1,29 @@
+Note:
+
+Với những bài toán có số lượng lớn query data từ một mảng phần tử 
+-> để giảm thời gian lấy ra data cần một bước tiền xử lý và lưu dữ liệu vào một cấu trúc dữ liệu phù hợp để thuận tiện cho việc truy vấn 
+=> có truy vấn đến chỉ cần get dữ liệu (thời gian nhỏ)
+
+RMQ: Cho dãy a0, a1, …, aN-1. Cho số nguyên dương K, ta cần thực hiện K truy vấn, 
+mỗi truy vấn dạng RMQ(i, j) trả về chỉ số của phần tử nhỏ nhất của dãy ai, ai+1, . . ., aj.
+
+phân tích các cách áp dụng 
+	cách 1: mảng 2 chiều M[i][j] lưu chỉ số phần tử nhỏ nhất trong đoạn i->j
+			độ phức tạp tiền xử lý: On2
+			kích thước bộ nhớ On2
+		=> không tối ưu
+	cách 2: chỉ lưu một số đoạn con. 
+		vấn đề khi truy vấn cần các đoạn con giao nhau
+giải quyết:
+tiền xử lý mảng 2 chiều M[i][j] : chỉ số phần tử nhỏ nhất từ a[j] có 2^i phần tử
+	-> M[0][j] = j (chỉ có 1 phần tử thì phần tử nhỏ nhất là chính nó) 
+	-> M[i][j] = M[i-1][j] nếu A[M[i-1][j]] > A[M[i-1][j + 2^(i-1)]]
+		     M[i-1][j + 2^(i-1)] nếu ngược lại
+=> độ phức tạp bước tiền xử lý O(nlogn)
+
+
+với mỗi truy vấn Q(i, j)
+	+ tìm k sao cho hai dãy con có chung ít nhất một phần tử
+		đk: 2^k <= j - i + 1
+		=> k <= log2(j-i+1) 
+			=> lấy cận ||k|| => chắc chắn 2 đoạn con có chung it nhất 1 phần tử

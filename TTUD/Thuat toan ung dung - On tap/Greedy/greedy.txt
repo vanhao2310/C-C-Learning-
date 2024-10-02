@@ -1,0 +1,45 @@
+Greedy
+Thường dùng để giải quyết các bài toán tối ưu tổ hợp 
+Tại mỗi bước đưa ra quyết định dựa trên thông tin hiện có mà không quan tâm đến ảnh hưởng của nó trong tương lai 
+=> Không chắc chắn tìm ra được lời giải tối ưu.
+***********Ứng dụng đưa ra lời giải chấp nhận được cho các bài toán tối ưu trong thực tế có độ khó cao
+sơ đồ chung:
+Lời giải biểu diễn bởi tập S
+các ứng cử viên trong tập C
+select(C): chọn ứng cử viên tiềm năng nhất trong C
+solution(S) trả về true nếu S là 1 lời giải
+feasible(S) trả về true nếu S không vi phạm ràng buộc
+Greedy(){
+	S = {};	//tập rỗng
+	while (c != {} & not solution(S))	{	//duyệt tất cả các ứng cử viên, mỗi ứng cử viên xét 1 lần
+		x = select(C);	//chọn ra ứng cử viên tốt nhất
+		C = C \ {x}	//loại x ra khỏi tập ucv và k xét trong tương lai
+		if (feasible(S u {x}))	//kiểm tra thêm x vào lời giải có còn thỏa mãn ràng buộc không
+			S = S u {x};
+		
+	}
+	return S;
+}
+
+Bài toán: Đổi tiền, disjoint segment, ..
+
+Bài toán TSP: 
+	cách tiếp cận tham lam: tại mỗi điểm tìm điểm gần nhất chọn làm điểm đến tiếp theo
+
+
+Bài toán lộ trình vận tải: Công ty phân phối sữa cần xếp chuyến cho K xe tải 1, 2, ... , K để giao hàng cho N khách hàng 1, 2, ... , N từ
+kho trung tâm (điểm 0). Khách hàng i ở điểm i và yêu câu một lượng hàng là d(i), với i = 1, ... , N. Biết c(i,j) là
+khoảng cách từ điểm i đến điểm j (i, j = 0,1, ... , N). Xe k có tải trọng là Q, với k = 1, 2, ... , K. Hãy lập lộ trình
+giao hàng cho K xe sao cho
+Mỗi xe xuất phát từ điểm 0, đi đến các khách hàng và quay về điểm 0
+- Mỗi khách hàng được giao hàng bởi đúng 1 xe
+Tổng lượng hàng giao cho các khách hàng bởi 1 xe không vượt quá tải trọng của xe đó
+- Hành trình của xe đi quãng đường dài nhất là nhỏ nhất có thể được
+
+	cách tiếp cận tham lam 1: Mỗi bước chọn xe k có dộ dài hành trình nhỏ nhất (Đảm bảo Hành trình của xe đi quãng đường dài nhất là nhỏ nhất có 					thể được)
+				Với xe k chọn được chọn khách hàng i gần với điểm cuối cùng của hành trình xe k nhất để phục vụ mà không vi phạm tải 					trọng
+	chiến lược tham lam 2: 	Tại mỗi bước chọn cặp xe k và khách hàng i sao cho khi thêm điểm của khách i vào cuối lộ trình xe k thì độ dài hành trình xe dài nhất là nhỏ nhất và không vi phạm ràng buộc về tải trọng.
+	minF hành trình xe dài nhất có giá trị nhỏ nhất trong các cặp xe k và khách hàng i
+	maxL độ dài hành trình dài nhất trong các xe ứng với cặp xe k và khách hàng i
+		duyệt toàn bộ cặp k-i, cặp nào nó maxL nhỏ nhất => được chọn.
+

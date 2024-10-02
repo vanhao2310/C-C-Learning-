@@ -1,0 +1,92 @@
+---------------------Devide and Conquer----------------------
+
+1, Tổng quan và mô hình chung của giải thuật
+- Chia để trị là mô hình giải bài toán theo hướng làm dễ bài toán đi bằng cách chia bài toán thành các phần nhỏ hơn và xử lý từng phần một.
+- Thông thường có 3 bước chính:
+	+ Chia: Chia bài toán thành một hoặc nhiều bài toán con (thường là 1 nửa)
+	+ Xử lý: giải đệ quy những bài toán con: 
+	+ Kết hợp: Kết hợp lời giải các bài toán con thành lời giải cho bài toán ban đầu
+(*)Mô hình chung của thuật toán:
+DC(int n) {
+	if (n <= n0)
+		//giải bài toán một cách trực tiếp
+	else {
+		[Chia bài toán thành b bài toán con với kích thước n/b]
+		for v : bài toán con của n
+			call DC(v)
+		Solution = [Tổng hợp lời giải các bài toán con]
+		 return solution;
+
+	}
+}
+
+
+2. Một số bài toán cơ bản của chia để trị:
+quick sort
+merge sort
+Karatsuba : Nhân nhanh hai số lớn
+Strassen : Nhân ma trận
+
+=> Ứng dụng của chia để trị:
++ Giải các bài toán khó bằng cách chia nhỏ thành các bài toán con dễ giải hơn rồi kết hợp lời giải các bài toán con lại thành bài toán ban đầu
++ Tính toán song song, multithreading, 
++ Truy cập bộ nhớ: Chia nhỏ bài toán cho đến khi có thể giải trên bộ nhớ đệm cache -> giảm thời gian truy nhập bộ nhớ
+
+
+vd chia để trị: 
+Dãy con có tổng lớn nhất
+	+ chia: Chia dãy con thành 2 nửa phân cách bởi phần tử mid = (l + r)/2
+	+ xử lý: tính dãy con có tổng lớn nhất bên nửa trái và nửa phải wL, wR
+	+ kết hợp: so sánh wL, wR, wM chọn ra giá trị lớn nhất
+		với wM: tổng của tổng dãy con lớn nhất của nửa bên trái kết thúc tại mid, và tổng dãy con lớn nhất của nửa bên phải bắt đầu từ mid + 1
+
+
+----------------------------Giảm để trị (chặt nhị phân)-------------------------------
+Đôi khi không cần chia bài toán thành nhiều bài toán con mà chỉ cần giảm về một bài toán con có kích thước nhỏ hơn \
+vd:
+Tìm kiếm nhị phân 
+Tìm kiếm nhị phân trên các số nguyên 
+	+ mảng 00000000 | 1111111111111111	-> tìm vị trí phân cách
+	
+lo = 0; hi = n-1;
+while (lo < hi) {
+	int mid = (lo + hi) / 2;
+	if (P(mid)) {
+		hi = mid;
+	} else {
+		lo = mid + 1;
+	}
+}
+
+
+Tìm kiếm nhị phân trên các số thực
+Tìm kiếm nhị phân câu trả lời  
+	+ Một số bài toán có thể khó tìm ra lời giải tối ứu một cách trực tiếp 
+	+ Dễ dàng kiểm tra số x nào đó có phải lời giải không 
+	=> sử dụng tìm kiếm nhị phân để tìm kiếm lời giải nhỏ nhất hoặc lớn nhất của một bài toán
+********(*) áp dụng được nếu bài toán có tính chất tìm kiếm nhị phân nếu i là một lời giải thì tất cả j > i cũng là lời giải
+vd contest Max Distance Subsequense
+Description
+Given N elements (2≤ N ≤100,000) on a straight line at positions x1,…, xN(0≤ xi ≤1,000,000,000).
+The distance of a subset of N elements is defined to be the minimum distance between two elements.
+Find the subset of N given elements containing exactly C elements such that the distance is maximal.
+Input
+The first line contains a positive integer T (1 <= T <= 20) which is the number of test cases. 
+Subsequent lines are T test cases with the following format:
+Line 1: Two space-separated integers: N and C
+Lines 2: contains  x1, x2, . . . , xN
+
+Output
+For each test case output one integer: the distance of the subset found.
+Example
+input
+1
+5 3
+1
+2
+8
+4
+9
+output
+3
+Explain: Jonh can put his 3 cows in the stalls at positions 1, 4 and 8, resulting in a minimum distance of 3

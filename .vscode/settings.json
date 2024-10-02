@@ -1,0 +1,13 @@
+{
+    "C_Cpp.errorSquiggles": "enabled",
+    "files.associations": {
+        "barrier": "cpp",
+        "*.tcc": "cpp",
+        "format": "cpp",
+        "mutex": "cpp",
+        "stop_token": "cpp",
+        "thread": "cpp",
+        "variant": "cpp",
+        "list": "cpp"
+    }
+}
